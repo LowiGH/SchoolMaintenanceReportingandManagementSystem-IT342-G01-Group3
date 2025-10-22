@@ -62,9 +62,8 @@ Run the following command:
 
 Once the build is complete, open your browser and go to:
 http://localhost:8080
-
+---
 4️⃣ Setup the ReactJS Web Application
-
 
 npm install
 npm run dev
@@ -73,14 +72,17 @@ npm run dev
 Start the React development server:
 
 npm start
-
-
+---
+```bash
 👥 Contributors
 Name	Role
-Christian Jayson Cantiller	Project Manager / Developer
+Christian Jayson Cantiller	Project Manager / Lead Developer
 Louie V. Bajamunde	Developer
 Angeline B. Baco	Developer
 Mac Howard Caranzo	Developer
+```
+
+
 📅 Project Information
 
 Course: IT342 - Systems Integration and Architecture 1
