@@ -33,7 +33,7 @@ git clone https://github.com/<your-org>/<your-repo>.git
 
 Open the cloned project in your IDE (IntelliJ IDEA, Eclipse, or VS Code).
 
-2️⃣ Import into IntelliJ or Eclipse
+2️ Import into IntelliJ or Eclipse
 
 Open IntelliJ IDEA or Eclipse.
 
@@ -51,7 +51,7 @@ spring.datasource.password=root
 ---
 
 
-3️⃣ Run the Spring Boot Application
+## Run the Spring Boot Application
 
 Open the terminal inside your project directory.
 
@@ -63,15 +63,19 @@ Run the following command:
 Once the build is complete, open your browser and go to:
 http://localhost:8080
 ---
-4️⃣ Setup the ReactJS Web Application
-
+## Setup the ReactJS Web Application
+```bash
 npm install
 npm run dev
-
+```
 
 Start the React development server:
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-npm start
 ---
 ```bash
 👥 Contributors
