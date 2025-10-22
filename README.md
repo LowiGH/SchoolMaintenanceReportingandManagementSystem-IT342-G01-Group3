@@ -4,13 +4,12 @@
 
 **School Maintenance Reporting and Management System**
 
-```bash
-A web and mobile-based platform designed to streamline the process of reporting, tracking, and resolving maintenance issues within the school campus.  
+  A web and mobile-based platform designed to streamline the process of reporting, tracking, and resolving maintenance issues within the school campus.  
 
-Students can submit requests with details (**building, location, priority, photo**), 
+Students can submit requests with details (**building, location, priority, photo**),  
 
 while Maintenance Staff and Admins manage, update, and analyze issues through dashboards and reports.
-```
+
 ---
 
 ## ⚙️ Tech Stack Used
