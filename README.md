@@ -62,9 +62,6 @@ Run the following command:
 
 ./mvnw spring-boot:run
 
-
-Once the build is complete, open your browser and go to:
-http://localhost:8080
 ---
 ## Setup the ReactJS Web Application
 ```bash
