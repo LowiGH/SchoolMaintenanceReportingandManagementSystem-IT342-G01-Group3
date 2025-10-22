@@ -22,34 +22,6 @@ while Maintenance Staff and Admins manage, update, and analyze issues through da
 - **Hosting/Deployment:** Firebase Hosting / Heroku / Custom Platform  
 
 ---
-
-## 🧰 Setup & Run Instructions
-
-### 1️⃣ Clone the Repository
-
-1. Open your terminal or command prompt.  
-2. Navigate to your desired directory.  
-3. Clone the repository:
-
-```bash
-git clone https://github.com/<your-org>/<your-repo>.git
-
-Open the cloned project in your IDE (IntelliJ IDEA, Eclipse, or VS Code).
-
-2️ Import into IntelliJ or Eclipse
-
-Open IntelliJ IDEA or Eclipse.
-
-Choose File → Open Project and select the cloned repository folder.
-
-Wait for the IDE to import all dependencies (Maven or Gradle).
-
-Configure the database connection in the file:
-src/main/resources/application.properties
-
-spring.datasource.url=jdbc:mysql://localhost:3306/
-spring.datasource.username=root
-spring.datasource.password=root
 ```
 ---
 
