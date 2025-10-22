@@ -48,10 +48,9 @@ spring.datasource.url=jdbc:mysql://localhost:3306/
 spring.datasource.username=root
 spring.datasource.password=root
 
+---
 
-Ensure MySQL is running locally on your system.
 
-Save the configuration file.
 
 3️⃣ Run the Spring Boot Application
 
@@ -81,47 +80,6 @@ Start the React development server:
 
 npm start
 
-
-The web app will run on:
-http://localhost:3000
-
-5️⃣ Setup the Android (Kotlin) Mobile Application
-
-Open the android/ folder in Android Studio.
-
-Connect your Firebase project for Authentication and Realtime Database.
-
-Build and run the app on an emulator or physical device.
-
-Ensure your Spring Boot backend is running before testing API requests.
-
-6️⃣ Deployment Options
-✅ Firebase Hosting
-
-Log in to Firebase:
-
-firebase login
-
-
-Initialize hosting:
-
-firebase init
-
-
-Deploy your web application:
-
-firebase deploy
-
-✅ Heroku (Alternative)
-
-Log in to Heroku:
-
-heroku login
-
-
-Push your project to Heroku:
-
-git push heroku main
 
 👥 Contributors
 Name	Role
