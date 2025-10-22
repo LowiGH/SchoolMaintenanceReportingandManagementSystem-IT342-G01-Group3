@@ -53,7 +53,7 @@ spring.datasource.password=root
 ```
 ---
 
-
+#  Setup & Run Instructions (Will update)
 ## Run the Spring Boot Application
 
 Open the terminal inside your project directory.
@@ -80,10 +80,10 @@ npm run dev
 ```bash
 👥 Contributors
 Name	Role
-Christian Jayson Cantiller	Project Manager / Lead Developer
-Louie V. Bajamunde	Developer
-Angeline B. Baco	Developer
-Mac Howard Caranzo	Developer
+Christian Jayson Cantiller	  -Lead Developer   -  christianjayson.cantiller@cit.edu
+Louie V. Bajamunde-            Developer        -  louie.bajamunde@cit.edu
+Angeline B. Baco-              Developer        -  angeline.baco@cit.edu
+Mac Howard Caranzo-    	       Developer        -  machoward.caranzo@cit.edu
 ```
 
 
