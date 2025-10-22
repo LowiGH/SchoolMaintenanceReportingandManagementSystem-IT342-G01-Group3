@@ -22,10 +22,11 @@ while Maintenance Staff and Admins manage, update, and analyze issues through da
 - **Hosting/Deployment:** Firebase Hosting / Heroku / Custom Platform  
 
 ---
-```
+
 ---
 
 #  Setup & Run Instructions (Will update)
+```bash
 ## Run the Spring Boot Application
 
 Open the terminal inside your project directory.
