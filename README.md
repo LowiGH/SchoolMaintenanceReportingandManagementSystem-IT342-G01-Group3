@@ -37,7 +37,7 @@ Run the following command:
 
 ---
 ## Setup the ReactJS Web Application
-```bash
+
 npm install
 npm run dev
 ```
