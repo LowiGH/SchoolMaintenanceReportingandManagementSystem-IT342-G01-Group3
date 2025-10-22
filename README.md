@@ -47,9 +47,8 @@ src/main/resources/application.properties
 spring.datasource.url=jdbc:mysql://localhost:3306/
 spring.datasource.username=root
 spring.datasource.password=root
-
+```
 ---
-
 
 
 3️⃣ Run the Spring Boot Application
@@ -66,14 +65,9 @@ http://localhost:8080
 
 4️⃣ Setup the ReactJS Web Application
 
-Navigate to the web application folder:
-
-cd webapp
-
-
-Install dependencies:
 
 npm install
+npm run dev
 
 
 Start the React development server:
