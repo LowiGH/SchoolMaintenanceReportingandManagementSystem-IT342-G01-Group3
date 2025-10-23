@@ -53,10 +53,10 @@ npm run dev
 ```bash
 👥 Contributors
 Name	Role
-Christian Jayson Cantiller	  -Lead Developer   -  christianjayson.cantiller@cit.edu
-Louie V. Bajamunde-            Developer        -  louie.bajamunde@cit.edu
-Angeline B. Baco-              Developer        -  angeline.baco@cit.edu
-Mac Howard Caranzo-    	       Developer        -  machoward.caranzo@cit.edu
+Christian Jayson Cantiller	  -Lead Developer   -  christianjayson.cantiller@cit.edu | @Shanta413
+Louie V. Bajamunde-            Developer        -  louie.bajamunde@cit.edu           | @LowiGH
+Angeline B. Baco-              Developer        -  angeline.baco@cit.edu             | @angeeeline
+Mac Howard Caranzo-    	       Developer        -  machoward.caranzo@cit.edu         | @Howardness
 ```
 
 
