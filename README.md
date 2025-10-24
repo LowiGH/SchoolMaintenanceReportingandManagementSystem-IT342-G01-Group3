@@ -28,8 +28,9 @@ while Maintenance Staff and Admins manage, update, and analyze issues through da
 #  Setup & Run Instructions (Will update)
 
 ---
+# 👥 Contributors
 ```bash
-👥 Contributors
+
 Name	Role
 Christian Jayson Cantiller	  -Lead Developer   -  christianjayson.cantiller@cit.edu | @Shanta413
 Louie V. Bajamunde-            Developer        -  louie.bajamunde@cit.edu           | @LowiGH
