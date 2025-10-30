@@ -17,7 +17,7 @@ while Maintenance Staff and Admins manage, update, and analyze issues through da
 - **Frontend (Web):** ReactJS  
 - **Mobile App:** Android (Kotlin)  
 - **Backend:** Spring Boot (Java)  
-- **Database:** MySQL / Firebase Realtime Database  
+- **Database:** MySQL / SupaBase
 - **Authentication:** Firebase Authentication (Google OAuth 2.0)  
 - **Hosting/Deployment:** Firebase Hosting / Heroku / Custom Platform  
 
@@ -26,14 +26,6 @@ while Maintenance Staff and Admins manage, update, and analyze issues through da
 ---
 
 #  Setup & Run Instructions (Will update)
-```bash
-## Run the Spring Boot Application
-
-Open the terminal inside your project directory.
-
-Run the following command:
-
-./mvnw spring-boot:run
 
 ---
 ## Setup the ReactJS Web Application
@@ -45,19 +37,12 @@ npm run dev
 
 Start the React development server:
 ```bash
-cd frontend
-npm install
-npm run dev
-```
 
----
-```bash
-👥 Contributors
 Name	Role
-Christian Jayson Cantiller	  -Lead Developer   -  christianjayson.cantiller@cit.edu
-Louie V. Bajamunde-            Developer        -  louie.bajamunde@cit.edu
-Angeline B. Baco-              Developer        -  angeline.baco@cit.edu
-Mac Howard Caranzo-    	       Developer        -  machoward.caranzo@cit.edu
+Christian Jayson Cantiller	  -Lead Developer   -  christianjayson.cantiller@cit.edu | @Shanta413
+Louie V. Bajamunde-            Developer        -  louie.bajamunde@cit.edu           | @LowiGH
+Angeline B. Baco-              Developer        -  angeline.baco@cit.edu             | @angeeeline
+Mac Howard Caranzo-    	       Developer        -  machoward.caranzo@cit.edu         | @Howardness
 ```
 
 
