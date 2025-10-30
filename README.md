@@ -28,7 +28,14 @@ while Maintenance Staff and Admins manage, update, and analyze issues through da
 #  Setup & Run Instructions (Will update)
 
 ---
-# 👥 Contributors
+## Setup the ReactJS Web Application
+
+npm install
+npm install react-router-dom
+npm run dev
+```
+
+Start the React development server:
 ```bash
 
 Name	Role
