@@ -1,25 +1,30 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CitfixLogo } from '../CitfixLogo';
 import "../../css/LoginPage.css";
 
 
 export function LoginPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('You clicked login button');
+    // Navigate to building selection page on login
+    navigate('/buildings');
   };
 
   const handleGoogleLogin = () => {
-    alert('You clicked Google login button');
+    // Navigate to building selection page on Google login
+    navigate('/buildings');
   };
 
   const handleRegisterClick = (e) => {
     e.preventDefault();
     alert('You clicked register link');
+    // Future: navigate('/register');
   };
 
   return (

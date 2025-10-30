@@ -39,6 +39,7 @@ Run the following command:
 ## Setup the ReactJS Web Application
 
 npm install
+npm install react-router-dom
 npm run dev
 ```
 
