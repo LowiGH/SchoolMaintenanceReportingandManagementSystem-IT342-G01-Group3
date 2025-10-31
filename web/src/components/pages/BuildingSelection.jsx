@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Settings, User, MapPin } from 'lucide-react';
 import '../../css/BuildingSelection.css';
+import { useNavigate } from 'react-router-dom'; // ✅ Added for navigation to ProfilePage
 
 // CitfixLogo Component
 function CitfixLogo({ className = '', size = 'md', variant = 'full' }) {
@@ -194,6 +195,8 @@ function BuildingSelection() {
   const [searchQuery, setSearchQuery] = useState('');
   const [priorityFilter, setPriorityFilter] = useState('');
 
+  const navigate = useNavigate(); // ✅ Added navigation hook
+
   // Filter and sort buildings
   const filteredBuildings = useMemo(() => {
     let filtered = mockBuildings.filter(building =>
@@ -255,7 +258,12 @@ function BuildingSelection() {
             <button className="icon-button">
               <Settings size={20} />
             </button>
-            <button className="icon-button user-avatar">
+            {/*  Added onClick to navigate to Profile Page */}
+            <button
+              className="icon-button user-avatar"
+              onClick={() => navigate('/profile')}
+              title="Go to Profile"
+            >
               <User size={20} />
             </button>
           </div>

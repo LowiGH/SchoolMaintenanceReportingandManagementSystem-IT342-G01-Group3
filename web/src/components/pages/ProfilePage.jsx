@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ For back navigation
 import "../../css/ProfilePage.css";
 import {
   FileText,
@@ -10,9 +11,12 @@ import {
   Calendar,
   MapPin,
   User,
+  ArrowLeft, // ✅ Added this icon
 } from "lucide-react";
 
 const ProfilePage = () => {
+  const navigate = useNavigate(); // ✅ Hook for navigation
+
   const [formData, setFormData] = useState({
     name: "John Doe",
     email: "johndoe@example.com",
@@ -25,12 +29,6 @@ const ProfilePage = () => {
 
   const [activeTab, setActiveTab] = useState("requests");
 
-  const stats = {
-    total: 5,
-    pending: 1,
-    inProgress: 2,
-    resolved: 2,
-  };
 
   const getInitials = (name) =>
     name
@@ -53,44 +51,19 @@ const ProfilePage = () => {
       {/* ===== Header Section ===== */}
       <div className="profile-header" style={{ backgroundImage: `url(/loginpic.jpg)` }}>
         <div className="profile-header-overlay"></div>
+
+        {/* ✅ Back Button */}
+        <button className="back-button" onClick={() => navigate("/buildings")}>
+          <ArrowLeft size={20} />
+          <span>Back to Dashboard</span>
+        </button>
+
         <div className="profile-header-content">
           <div className="avatar-circle">{getInitials(formData.name)}</div>
           <div>
             <h2>{formData.name}</h2>
             <p>{formData.role}</p>
             <p className="email">{formData.email}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* ===== Stats Section ===== */}
-      <div className="stats-container">
-        <div className="stat-card">
-          <FileText className="icon blue" />
-          <div>
-            <p>Total Requests</p>
-            <h3>{stats.total}</h3>
-          </div>
-        </div>
-        <div className="stat-card">
-          <Clock className="icon yellow" />
-          <div>
-            <p>Pending</p>
-            <h3>{stats.pending}</h3>
-          </div>
-        </div>
-        <div className="stat-card">
-          <AlertCircle className="icon indigo" />
-          <div>
-            <p>In Progress</p>
-            <h3>{stats.inProgress}</h3>
-          </div>
-        </div>
-        <div className="stat-card">
-          <CheckCircle2 className="icon green" />
-          <div>
-            <p>Resolved</p>
-            <h3>{stats.resolved}</h3>
           </div>
         </div>
       </div>
