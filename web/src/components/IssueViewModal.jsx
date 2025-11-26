@@ -142,8 +142,6 @@ export default function IssueViewModal({ isOpen, onClose, issue = {} }) {
                 <a
                   href={issue.issueReportFile}
                   download
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="issue-view-download-btn"
                 >
                   <Download size={18} />
