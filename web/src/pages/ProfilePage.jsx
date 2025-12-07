@@ -36,7 +36,7 @@ const ProfilePage = () => {
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [avatarBust, setAvatarBust] = useState(Date.now()); // cache-buster
+  const [avatarBust, setAvatarBust] = useState(Date.now());
 
   // ====== Toast notification state & function ======
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
@@ -104,8 +104,13 @@ const ProfilePage = () => {
   }, [navigate]);
 
   // ====== Detect if any non-avatar field changed ======
-  const nonAvatarChanged = useMemo(() => {
+  const hasChanges = useMemo(() => {
     if (!initialTextSnapshot) return false;
+    
+    // Check if avatar file is selected
+    if (selectedFile) return true;
+    
+    // Check text fields
     return (
       formData.fullname !== initialTextSnapshot.fullname ||
       formData.mobileNumber !== initialTextSnapshot.mobileNumber ||
@@ -113,11 +118,40 @@ const ProfilePage = () => {
       formData.studentIdNumber !== initialTextSnapshot.studentIdNumber ||
       (formData.password && formData.password.trim().length > 0)
     );
-  }, [formData, initialTextSnapshot]);
+  }, [formData, initialTextSnapshot, selectedFile]);
 
-  // ====== Controlled inputs ======
+  // ====== Controlled inputs with validation ======
   const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    
+    // Full name - limit to 60 characters
+    if (name === "fullname" && value.length > 60) {
+      return;
+    }
+    
+    // Phone number - only numbers, max 11
+    if (name === "mobileNumber") {
+      if (!/^\d*$/.test(value)) return;
+      if (value.length > 11) return;
+    }
+    
+    // Student ID - only numbers and dashes, max 11
+    if (name === "studentIdNumber") {
+      if (!/^[\d-]*$/.test(value)) return;
+      if (value.length > 11) return;
+    }
+    
+    // Department - max 10 characters
+    if (name === "studentDepartment" && value.length > 10) {
+      return;
+    }
+    
+    // Password - max 30 characters
+    if (name === "password" && value.length > 30) {
+      return;
+    }
+    
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   // ====== Handle avatar selection (enabled for LOCAL and GOOGLE) ======
@@ -134,27 +168,6 @@ const ProfilePage = () => {
       return;
     }
     setSelectedFile(file);
-  };
-
-  // ====== Upload avatar to BACKEND (which uploads to Supabase + persists URL) ======
-  const uploadAvatarViaBackend = async (file) => {
-    const token = localStorage.getItem("authToken");
-    if (!token) {
-      showToast("Not authenticated!", "error");
-      return null;
-    }
-    const fd = new FormData();
-    fd.append("file", file);
-
-    const { data } = await axios.put(`${API_BASE}/user/profile/avatar`, fd, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "multipart/form-data",
-      },
-    });
-
-    // Backend returns ProfileResponse; it includes avatarUrl
-    return data?.avatarUrl || null;
   };
 
   // ====== Save profile updates (text + optional avatar) ======
@@ -190,7 +203,7 @@ const ProfilePage = () => {
           studentDepartment:
             refreshed.data.studentDepartment || prev.studentDepartment,
           studentIdNumber: refreshed.data.studentIdNumber || prev.studentIdNumber,
-          avatarUrl: refreshed.data.avatarUrl || prev.avatarUrl, // new Supabase URL
+          avatarUrl: refreshed.data.avatarUrl || prev.avatarUrl,
           authMethod: refreshed.data.authMethod || prev.authMethod,
         }));
         setSelectedFile(null);
@@ -221,6 +234,14 @@ const ProfilePage = () => {
 
       await axios.put(`${API_BASE}/user/profile`, payload, {
         headers: { Authorization: `Bearer ${token}` },
+      });
+
+      // Update snapshot after successful save
+      setInitialTextSnapshot({
+        fullname,
+        mobileNumber,
+        studentDepartment,
+        studentIdNumber,
       });
 
       showToast("Profile updated successfully!", "success");
@@ -272,7 +293,6 @@ const ProfilePage = () => {
                 crossOrigin="anonymous"
                 onError={(e) => {
                   const src = e.currentTarget.src || "";
-                  // If it's a Google avatar, try a larger size once (s96-c -> s256-c)
                   if (
                     src.includes("lh3.googleusercontent.com") &&
                     !src.includes("=s256-c")
@@ -280,7 +300,6 @@ const ProfilePage = () => {
                     e.currentTarget.src = src.replace(/=s\d+-c$/, "=s256-c");
                     return;
                   }
-                  // Final fallback: hide image so your initials circle shows
                   e.currentTarget.style.display = "none";
                 }}
               />
@@ -290,7 +309,7 @@ const ProfilePage = () => {
               </div>
             )}
 
-            {/* Upload Button (LOCAL & GOOGLE) */}
+            {/* Upload Button */}
             <label className="upload-avatar-btn">
               <Upload size={16} />
               <input
@@ -328,6 +347,7 @@ const ProfilePage = () => {
                     value={formData.fullname}
                     onChange={handleChange}
                     required
+                    maxLength={60}
                   />
                 </div>
               </div>
@@ -365,7 +385,7 @@ const ProfilePage = () => {
                     name="mobileNumber"
                     value={formData.mobileNumber}
                     onChange={handleChange}
-                    placeholder="Enter phone number"
+                    placeholder="e.g., 09123456789 (11 digits)"
                     maxLength={11}
                   />
                 </div>
@@ -378,6 +398,7 @@ const ProfilePage = () => {
                   name="studentIdNumber"
                   value={formData.studentIdNumber}
                   onChange={handleChange}
+                  placeholder="e.g., 23-4231-312"
                   maxLength={11}
                 />
               </div>
@@ -393,7 +414,7 @@ const ProfilePage = () => {
                     name="studentDepartment"
                     value={formData.studentDepartment}
                     onChange={handleChange}
-                    placeholder="Enter department"
+                    placeholder="e.g., CCS, CEA, CASE, CNAS, CCI"
                     maxLength={10}
                   />
                 </div>
@@ -422,6 +443,7 @@ const ProfilePage = () => {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Enter new password"
+                maxLength={30}
                 disabled={formData.authMethod === "GOOGLE"}
                 style={formData.authMethod === "GOOGLE" ? { background: "#f3f4f6", cursor: "not-allowed" } : {}}
               />
@@ -435,8 +457,8 @@ const ProfilePage = () => {
             <div className="form-actions">
               <button
                 type="submit"
-                className="save-btn"
-                disabled={saving || uploading}
+                className={`save-btn ${hasChanges ? 'has-changes' : ''}`}
+                disabled={saving || uploading || !hasChanges}
               >
                 {saving || uploading ? "Saving..." : "Save Changes"}
               </button>

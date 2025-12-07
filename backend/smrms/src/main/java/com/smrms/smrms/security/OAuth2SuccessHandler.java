@@ -127,7 +127,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
         studentRepository.findByUser(user).orElseGet(() -> {
             Student student = Student.builder()
                     .user(user)
-                    .studentDepartment("BSIT") // default, adjust if needed
+                    .studentDepartment("null") // default, adjust if needed
                     .studentIdNumber(null)
                     .build();
             return studentRepository.save(student);
