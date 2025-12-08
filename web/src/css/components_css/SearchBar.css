@@ -6,7 +6,9 @@
   height: 52px;
   background-color: white;
   border-radius: 12px;
+  overflow: hidden;     /* ← IMPORTANT */
 }
+
 
 .search-icon {
   position: absolute;
@@ -31,7 +33,8 @@
   border-radius: 12px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   line-height: 1.5;
-  box-shadow: none;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .search-input::placeholder {
