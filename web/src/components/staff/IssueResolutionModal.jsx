@@ -231,7 +231,7 @@ export default function IssueResolutionModal({
                     ))}
                   </select>
                 </div>
-                <div className="form-group">
+                <div className="form-group form-group-highlight">
                   <label className="form-label">
                     Status <span className="required">*</span>
                   </label>

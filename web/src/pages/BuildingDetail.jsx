@@ -13,11 +13,15 @@ import "../css/BuildingDetails.css";
 import "../css/components_css/UserActiveIssueModal.css";
 
 import useAutoRefresh from "../hooks/useAutoRefresh";
+import useInactivityLogout from "../hooks/useInactivityLogout";
 
 export default function BuildingDetail() {
   const { buildingCode } = useParams();
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user")) || {};
+  
+  // Add inactivity logout
+  const { InactivityModal } = useInactivityLogout("STUDENT");
 
   const [building, setBuilding] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -447,6 +451,9 @@ export default function BuildingDetail() {
           />
         )}
       </main>
+
+      {/* Inactivity Modal - Add this at the end */}
+      {InactivityModal}
 
       <style>{`
         @keyframes slideIn {

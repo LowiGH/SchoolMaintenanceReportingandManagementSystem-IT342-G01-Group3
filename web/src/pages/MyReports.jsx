@@ -9,10 +9,14 @@ import { getAllIssues, deleteIssue } from "../api/issues";
 
 import "../css/MyReports.css";
 import useAutoRefresh from "../hooks/useAutoRefresh";
+import useInactivityLogout from "../hooks/useInactivityLogout"; // ← ADD THIS
 
 export default function MyReports() {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user")) || {};
+  
+  // ← ADD THIS
+  const { InactivityModal } = useInactivityLogout("STUDENT");
 
   const [activeTab, setActiveTab] = useState("active");
   const [searchQuery, setSearchQuery] = useState("");
@@ -433,6 +437,9 @@ export default function MyReports() {
           )}
         </div>
       </main>
+
+      {/* Inactivity Modal - ADD THIS */}
+      {InactivityModal}
     </div>
   );
 }
