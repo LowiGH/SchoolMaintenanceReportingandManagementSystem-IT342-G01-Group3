@@ -719,3 +719,81 @@
     transform: translateX(120%);
   }
 }
+/* ===================== Modern Enhancements ===================== */
+
+/* Card hover effect */
+.auth-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 25px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Input hover and focus subtle lift */
+.form-input {
+  transition: all 0.25s ease;
+}
+
+.form-input:hover {
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.05);
+}
+
+.form-input:focus {
+  transform: translateY(-1px);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Button hover smooth lift */
+.btn-primary, .btn-outline {
+  transition: all 0.25s ease;
+}
+
+.btn-primary:hover, .btn-outline:hover {
+  transform: translateY(-2px);
+}
+
+/* Eye toggle animation */
+.password-toggle {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.password-toggle:hover {
+  color: #2563eb;
+  transform: scale(1.1);
+}
+
+/* Google icon hover animation */
+.btn-outline .google-icon {
+  transition: transform 0.2s ease;
+}
+
+.btn-outline:hover .google-icon {
+  transform: scale(1.1);
+}
+
+/* Toast shadow pulse for modern feel */
+.toast {
+  animation: slideInRight 0.4s ease, fadeOut 0.4s ease 2.8s forwards;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Divider line subtle animation */
+.divider-line {
+  transition: all 0.3s ease;
+}
+
+.divider-line:hover {
+  background-color: #9ca3af;
+}
+
+/* Smooth focus ring for auth-link */
+.auth-link:hover {
+  color: #1d4ed8;
+}
+
+.auth-link::after {
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
