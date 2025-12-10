@@ -774,3 +774,92 @@
     min-width: auto;
   }
 }
+
+/* --- Enhancements / Modern Touches --- */
+
+/* Glassmorphism for cards */
+.building-detail-container,
+.issue-card {
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.building-detail-container:hover,
+.issue-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* Smooth hover for priority chips */
+.chip {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chip:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Gradient buttons for report issue & admin actions */
+.report-issue-button {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.report-issue-button:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+}
+
+/* Hover glow for inline admin buttons */
+.admin-inline-btn.edit,
+.admin-issue-edit-btn {
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+}
+
+.admin-inline-btn.delete,
+.admin-issue-delete-btn {
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+}
+
+.admin-inline-btn:hover,
+.admin-issue-edit-btn:hover,
+.admin-issue-delete-btn:hover {
+  filter: brightness(1.1);
+}
+
+/* Toast notifications smooth shadows */
+.toast {
+  border-left: 4px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+/* Subtle link hover glow */
+.back-button-simple:hover,
+.back-button-banner:hover {
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+/* Enhanced tab hover effect */
+.tab-button:hover,
+.tab-btn:hover {
+  color: #4f46e5;
+  border-bottom-color: #4f46e5;
+  transform: translateY(-2px);
+}
+
+/* Smooth scroll for overflow sections */
+.issues-list {
+  scroll-behavior: smooth;
+}
+
+/* Slight shadow for banner gradient text */
+.building-title,
+.building-subtitle {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
