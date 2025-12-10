@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CitfixLogo from "../components/CitfixLogo";
 import "../css/AuthPage.css";
@@ -21,6 +21,16 @@ export function RegisterPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
+
+  // ✅ DISABLE DARK MODE ON AUTH PAGES
+  useEffect(() => {
+    document.body.classList.add('auth-page');
+    document.documentElement.classList.remove('dark');
+    
+    return () => {
+      document.body.classList.remove('auth-page');
+    };
+  }, []);
 
   const showToast = (message, type = "error") => {
     setToast({ show: true, message, type });
