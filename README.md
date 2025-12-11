@@ -37,7 +37,7 @@ Maintenance Staff and Administrators can:
 
 ## 🏗️ System Architecture
 
-![Architecture Diagram](architecture-diagram.png)
+![SMRMS Architecture Diagram showing client layer (ReactJS web and Android mobile), application layer (Spring Boot backend), data layer (PostgreSQL and Supabase Storage), authentication (Google OAuth 2.0 + JWT), and deployment on Railway](architecture-diagram.png)
 
 The system follows a modern three-tier architecture:
 
