@@ -35,6 +35,20 @@ Maintenance Staff and Administrators can:
 
 ---
 
+## 🏗️ System Architecture
+
+![SMRMS Architecture Diagram showing client layer (ReactJS web and Android mobile), application layer (Spring Boot backend), data layer (PostgreSQL and Supabase Storage), authentication (Google OAuth 2.0 + JWT), and deployment on Railway](architecture-diagram.png)
+
+The system follows a modern three-tier architecture:
+
+- **Client Layer**: ReactJS web application and Android mobile app for user interactions
+- **Application Layer**: Spring Boot backend with REST API endpoints for business logic
+- **Data Layer**: PostgreSQL for relational data and Supabase Storage for file storage
+- **Authentication**: Google OAuth 2.0 integrated with JWT token-based security
+- **Deployment**: Hosted on Railway for seamless cloud deployment
+
+---
+
 # 🛠️ Setup & Run Instructions
 
 ## 🚀 ReactJS + Spring Boot Combined Setup
