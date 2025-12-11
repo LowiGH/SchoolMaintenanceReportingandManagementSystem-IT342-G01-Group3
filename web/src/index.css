@@ -37,8 +37,8 @@ body {
   color: #60a5fa;
 }
 
-/* Ensure auth pages always use light theme */
-.auth-page,
-.auth-page * {
-  /* Force light theme on auth pages */
+/* Auth pages always use light theme */
+.auth-page {
+  background-color: #ffffff;
+  color: #000000;
 }
