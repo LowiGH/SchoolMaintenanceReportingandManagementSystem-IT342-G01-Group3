@@ -35,6 +35,14 @@ Maintenance Staff and Administrators can:
 
 ---
 
+## 📚 API Documentation
+
+For a complete overview of all available API endpoints, including authentication, authorization requirements, and request/response examples, please refer to:
+
+**[API_ENDPOINTS.md](./API_ENDPOINTS.md)**
+
+---
+
 # 🛠️ Setup & Run Instructions
 
 ## 🚀 ReactJS + Spring Boot Combined Setup
