@@ -8,8 +8,8 @@ The system uses **JWT (JSON Web Token)** authentication for local users and **Go
 
 ### Authorization Roles:
 - **STUDENT**: Can report issues and view their own data
-- **MAINTENANCE_STAFF**: Can view and update issues, access staff APIs
-- **ADMIN**: Full access to all endpoints including user management
+- **MAINTENANCE_STAFF**: Can view and update issues
+- **ADMIN**: Full access to all endpoints including user and staff management
 
 ---
 
@@ -276,11 +276,8 @@ file: [image file]
 ### Role-Specific Endpoints:
 
 **ADMIN Only:**
-- `/api/students/**`
-- `/api/staff/**` (with MAINTENANCE_STAFF)
-
-**ADMIN + MAINTENANCE_STAFF:**
-- `/api/staff/**`
+- `/api/students/**` (Student management)
+- `/api/staff/**` (Maintenance staff management)
 
 ---
 
