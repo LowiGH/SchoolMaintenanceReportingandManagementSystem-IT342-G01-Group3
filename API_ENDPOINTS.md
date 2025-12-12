@@ -6,10 +6,128 @@ This document provides a comprehensive overview of all API endpoints in the Scho
 
 The system uses **JWT (JSON Web Token)** authentication for local users and **Google OAuth 2.0** for social login.
 
-### Authorization Roles:
+### 📊 Authentication Flow Diagram
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant Backend
+    participant Database
+    participant Google
+
+    Note over User,Google: LOCAL Authentication Flow
+    User->>Frontend: Enter credentials
+    Frontend->>Backend: POST /api/auth/login
+    Backend->>Database: Validate credentials
+    Database-->>Backend: User data
+    Backend->>Backend: Generate JWT Token
+    Backend-->>Frontend: JWT Token + User Info
+    Frontend->>Frontend: Store token
+    
+    Note over User,Google: Google OAuth2 Flow
+    User->>Frontend: Click "Login with Google"
+    Frontend->>Google: Redirect to Google OAuth
+    Google->>User: Request permission
+    User->>Google: Grant permission
+    Google->>Backend: /oauth2/** (callback)
+    Backend->>Google: Validate token
+    Google-->>Backend: User profile
+    Backend->>Database: Create/Update user
+    Backend->>Backend: Generate JWT Token
+    Backend-->>Frontend: JWT Token + User Info
+    Frontend->>Frontend: Store token
+    
+    Note over User,Google: Authenticated Request Flow
+    User->>Frontend: Access protected resource
+    Frontend->>Backend: API Request + JWT Token (Header)
+    Backend->>Backend: Validate JWT Token
+    Backend->>Backend: Check user role/permissions
+    Backend->>Database: Fetch data
+    Database-->>Backend: Data
+    Backend-->>Frontend: Response
+    Frontend-->>User: Display data
+```
+
+### 🔑 Authorization Logic
+
+```mermaid
+flowchart TD
+    A[Incoming Request] --> B{Has JWT Token?}
+    B -->|No| C[Public Endpoint?]
+    C -->|Yes| D[Allow Access]
+    C -->|No| E[Return 401 Unauthorized]
+    
+    B -->|Yes| F[Validate JWT Token]
+    F -->|Invalid| E
+    F -->|Valid| G[Extract User Role]
+    
+    G --> H{Check Endpoint Authorization}
+    
+    H -->|/api/auth/**| D
+    H -->|/api/students/**| I{Role = ADMIN?}
+    H -->|/api/staff/**| I
+    H -->|/api/user/**| J[Authenticated]
+    H -->|/api/issues/**| J
+    H -->|/api/buildings/**| J
+    H -->|/api/admin/**| J
+    
+    I -->|Yes| D
+    I -->|No| K[Return 403 Forbidden]
+    J -->|Any Role| D
+```
+
+### 🎭 Authorization Roles:
 - **STUDENT**: Can report and manage issues, view buildings, and update their own profile
 - **MAINTENANCE_STAFF**: Can view and update issues, view buildings and dashboard statistics
 - **ADMIN**: Full access to all endpoints including student and staff management
+
+### 🔒 Security Implementation
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Security Architecture                     │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│  1. JWT Token Generation (Login)                            │
+│     ┌──────────────────────────────────────┐               │
+│     │ User Credentials                      │               │
+│     │  ↓                                    │               │
+│     │ BCrypt Password Verification          │               │
+│     │  ↓                                    │               │
+│     │ JWT Token Creation                    │               │
+│     │  - Algorithm: HS256                   │               │
+│     │  - Contains: email, roles, expiry     │               │
+│     │  ↓                                    │               │
+│     │ Return Token to Client                │               │
+│     └──────────────────────────────────────┘               │
+│                                                              │
+│  2. Request Authentication                                   │
+│     ┌──────────────────────────────────────┐               │
+│     │ Authorization: Bearer <JWT>           │               │
+│     │  ↓                                    │               │
+│     │ JwtAuthenticationFilter               │               │
+│     │  ↓                                    │               │
+│     │ Token Validation & User Extraction    │               │
+│     │  ↓                                    │               │
+│     │ Set SecurityContext                   │               │
+│     │  ↓                                    │               │
+│     │ Proceed to Controller                 │               │
+│     └──────────────────────────────────────┘               │
+│                                                              │
+│  3. Authorization Check                                      │
+│     ┌──────────────────────────────────────┐               │
+│     │ @PreAuthorize("hasRole('ADMIN')")    │               │
+│     │        OR                             │               │
+│     │ SecurityConfig rules                  │               │
+│     │  ↓                                    │               │
+│     │ Role-based Access Control             │               │
+│     │  ↓                                    │               │
+│     │ Allow/Deny Access                     │               │
+│     └──────────────────────────────────────┘               │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+```
 
 ---
 
