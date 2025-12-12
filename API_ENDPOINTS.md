@@ -7,9 +7,9 @@ This document provides a comprehensive overview of all API endpoints in the Scho
 The system uses **JWT (JSON Web Token)** authentication for local users and **Google OAuth 2.0** for social login.
 
 ### Authorization Roles:
-- **STUDENT**: Can report issues and view their own data
-- **MAINTENANCE_STAFF**: Can view and update issues
-- **ADMIN**: Full access to all endpoints including user and staff management
+- **STUDENT**: Can report and manage issues, view buildings, and update their own profile
+- **MAINTENANCE_STAFF**: Can view and update issues, view buildings and dashboard statistics
+- **ADMIN**: Full access to all endpoints including student and staff management
 
 ---
 
@@ -153,12 +153,12 @@ The system uses **JWT (JSON Web Token)** authentication for local users and **Go
 
 | Module | Method | Endpoint                  | Description                     | Authorization            |
 |--------|--------|---------------------------|---------------------------------|--------------------------|
-| Issue  | POST   | `/api/issues`             | Create new issue (multipart)    | Authenticated (STUDENT)  |
-| Issue  | GET    | `/api/issues`             | Get all issues                  | Authenticated            |
-| Issue  | GET    | `/api/issues/{id}`        | Get issue by ID                 | Authenticated            |
-| Issue  | GET    | `/api/issues/building/{id}`| Get issues by building ID       | Authenticated            |
-| Issue  | PUT    | `/api/issues/{id}`        | Update issue (multipart)        | Authenticated            |
-| Issue  | DELETE | `/api/issues/{id}`        | Delete issue                    | Authenticated            |
+| Issue  | POST   | `/api/issues`             | Create new issue (multipart)    | Authenticated (any role) |
+| Issue  | GET    | `/api/issues`             | Get all issues                  | Authenticated (any role) |
+| Issue  | GET    | `/api/issues/{id}`        | Get issue by ID                 | Authenticated (any role) |
+| Issue  | GET    | `/api/issues/building/{id}`| Get issues by building ID       | Authenticated (any role) |
+| Issue  | PUT    | `/api/issues/{id}`        | Update issue (multipart)        | Authenticated (any role) |
+| Issue  | DELETE | `/api/issues/{id}`        | Delete issue                    | Authenticated (any role) |
 
 **Request Format:**
 - Content-Type: `multipart/form-data`
@@ -222,10 +222,10 @@ file: [image file]
 
 ## 7️⃣ Admin Dashboard & Statistics
 
-| Module | Method | Endpoint                        | Description                      | Authorization |
-|--------|--------|---------------------------------|----------------------------------|---------------|
-| Admin  | GET    | `/api/admin/dashboard`          | Get dashboard statistics         | Authenticated |
-| Admin  | GET    | `/api/admin/stats/monthly-issues`| Get monthly issues data          | Authenticated |
+| Module | Method | Endpoint                        | Description                      | Authorization            |
+|--------|--------|---------------------------------|----------------------------------|--------------------------|
+| Admin  | GET    | `/api/admin/dashboard`          | Get dashboard statistics         | Authenticated (any role) |
+| Admin  | GET    | `/api/admin/stats/monthly-issues`| Get monthly issues data          | Authenticated (any role) |
 
 **Dashboard Response Example:**
 ```json
@@ -284,7 +284,7 @@ file: [image file]
 ## 🛡️ Security Notes
 
 1. **JWT Token**: Include in `Authorization` header as `Bearer <token>`
-2. **CORS**: Configured for `http://localhost:5173` (React frontend)
+2. **CORS**: Configured for `http://localhost:5173` (React frontend) in development. Update CORS configuration for production deployment.
 3. **Session Management**: Stateless (JWT-based)
 4. **Password Encoding**: BCrypt encryption
 5. **File Uploads**: Stored in Supabase Storage Buckets
